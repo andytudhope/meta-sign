@@ -16,17 +16,16 @@ function App() {
   return (
     <>
       {
-        !state.image &&
           <ReactP5Wrapper
             sketch={Canvas}
             selectedText={highlighted}
             handleFinishedDrawing={(img) => dispatch({ type: 'ready', payload: img })}
           />
       }
-      {
+      {/* {
         state.image &&
           <img src={state.image} alt="" style={{ width: '500px', height: '750px', maxWidth: '500px' }} />
-      }
+      } */}
     </>
   );
 }

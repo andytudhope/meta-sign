@@ -34,6 +34,7 @@ let canvas;
 function HighlightSketch(p5) {
   let selectedText = '';
   let fontSyne;
+  let n =0;
   let c = 16;
   let imgA, imgB, imgC, imgD, imgE, imgF, imgG, imgH, imgI, imgJ, imgK, imgL, imgM, imgN, imgO, imgP, imgQ, imgR, imgS, imgT, imgU, imgV, imgW, imgX, imgY, imgZ;
   let imgEmpty;
@@ -84,19 +85,21 @@ function HighlightSketch(p5) {
       //when it is selected with line breaks
       //weird p5 issue, I don't know what causes it in the first place
       selectedText = `\r\n${props.selectedText}`;
-      p5.setup();
+      
     }
-    handleFinishedDrawing = props.handleFinishedDrawing;
+    //handleFinishedDrawing = props.handleFinishedDrawing;
   };
 
   p5.draw = () => {
-    p5.noLoop();
+    if(n >= 400 || n >= selectedText.length) {
+      p5.noLoop();
+    }
     p5.background(0);
 
     p5.translate(p5.width / 2, p5.height / 2);
     let len = selectedText.length;
     let offset = p5.floor(p5.map(len, 0, 700, 2, 10));
-    for (var i = offset; i <= len+offset; i++) {
+    for (var i = offset; i <= n+offset; i++) {
       var a = i * 107.5;
       var r = c*1.2 * p5.sqrt(i);
       var x = r * p5.cos(a);
@@ -218,8 +221,22 @@ function HighlightSketch(p5) {
     p5.textSize(28);
     p5.text("Signature Economies",493,1130,400,100);
 
-    const img = canvas?.elt?.toDataURL();
-    handleFinishedDrawing(img); 
+    //const img = canvas?.elt?.toDataURL();
+
+    if (n < selectedText.length && n<=400) {
+      //animate the pattern
+      n+=2;
+    }else{
+      //stop animation at 400 or selectedText.length, whichever is smaller
+      if(selectedText.length>400){
+        n = 400;
+      }
+      else{
+        n = selectedText.length;
+      }
+    }
+
+    //handleFinishedDrawing(img); 
   };
 }
   
