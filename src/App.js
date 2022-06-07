@@ -1,31 +1,25 @@
-import React, { useContext } from 'react'
-import { ReactP5Wrapper } from 'react-p5-wrapper';
-import { HighlightContext } from './contexts/Highlight';
+import React from 'react'
+import { ReactP5Wrapper } from 'react-p5-wrapper'
 import Canvas from './utils/Canvas'
 import text from './utils/Text'
 
 function App() {
-  const {state, dispatch} = useContext(HighlightContext);
-  const str = window.location.href
-  const index = str.split('?')
-  const removeCount = index[2] - index[1]
+  const [x, y] = window.location.hash.slice(1).split('-').map((e) => parseInt(e))
   let essay = text.split(' ')
-  let selected = essay.splice(index[1], removeCount)
+  let selected = essay.splice(x, (y-x))
   let highlighted = selected.join(' ')
-
+  
+  if (highlighted === null || highlighted === '') {
+    return (
+      <p>Loading...</p>
+    )
+  }
   return (
     <>
-      {
-          <ReactP5Wrapper
-            sketch={Canvas}
-            selectedText={highlighted}
-            handleFinishedDrawing={(img) => dispatch({ type: 'ready', payload: img })}
-          />
-      }
-      {/* {
-        state.image &&
-          <img src={state.image} alt="" style={{ width: '500px', height: '750px', maxWidth: '500px' }} />
-      } */}
+      <ReactP5Wrapper
+        sketch={Canvas}
+        selectedText={highlighted}
+      />
     </>
   );
 }

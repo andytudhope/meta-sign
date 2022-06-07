@@ -29,9 +29,9 @@ import urlY from '../alphabets/Y.png';
 import urlZ from '../alphabets/Z.png';
 import Empty from '../alphabets/Empty.png';
 import Syne from '../fonts/Syne.ttf';
-let canvas;
 
 function HighlightSketch(p5) {
+  let canvas;
   let selectedText = '';
   let fontSyne;
   let n =0;
@@ -77,22 +77,17 @@ function HighlightSketch(p5) {
     c = p5.map(selectedText.length, 0, 300, 36, 20, true);
   };
 
-  let handleFinishedDrawing;
-
   p5.updateWithProps = (props) => {
     if (props.selectedText) {
-      //adding a carraige return in front of text fixes the issue of text overlapping
-      //when it is selected with line breaks
-      //weird p5 issue, I don't know what causes it in the first place
       selectedText = `\r\n${props.selectedText}`;
-      
+      p5.setup();  
     }
-    //handleFinishedDrawing = props.handleFinishedDrawing;
   };
 
   p5.draw = () => {
     if(n >= 400 || n >= selectedText.length) {
       p5.noLoop();
+      const img = canvas?.elt?.toDataURL();
     }
     p5.background(0);
 
@@ -221,8 +216,6 @@ function HighlightSketch(p5) {
     p5.textSize(28);
     p5.text("Signature Economies",493,1130,400,100);
 
-    //const img = canvas?.elt?.toDataURL();
-
     if (n < selectedText.length && n<=400) {
       //animate the pattern
       n+=2;
@@ -235,8 +228,6 @@ function HighlightSketch(p5) {
         n = selectedText.length;
       }
     }
-
-    //handleFinishedDrawing(img); 
   };
 }
   
