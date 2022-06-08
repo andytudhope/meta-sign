@@ -28,12 +28,12 @@ import urlX from '../alphabets/X.png';
 import urlY from '../alphabets/Y.png';
 import urlZ from '../alphabets/Z.png';
 import Empty from '../alphabets/Empty.png';
-import Syne from '../fonts/Syne.ttf';
+import Garamond from '../fonts/Garamond.ttf';
 
 function HighlightSketch(p5) {
   let canvas;
   let selectedText = '';
-  let fontSyne;
+  let fontGaramond;
   let n =0;
   let c = 16;
   let imgA, imgB, imgC, imgD, imgE, imgF, imgG, imgH, imgI, imgJ, imgK, imgL, imgM, imgN, imgO, imgP, imgQ, imgR, imgS, imgT, imgU, imgV, imgW, imgX, imgY, imgZ;
@@ -67,7 +67,7 @@ function HighlightSketch(p5) {
     imgY = p5.loadImage(urlY);
     imgZ = p5.loadImage(urlZ);
     imgEmpty = p5.loadImage(Empty);
-    fontSyne = p5.loadFont(Syne);
+    fontGaramond = p5.loadFont(Garamond);
   };
 
   p5.setup = () => {
@@ -200,21 +200,21 @@ function HighlightSketch(p5) {
     p5.fill(360,0,100,0.3);
     p5.rect(50,1100,700,2);
 
-    p5.textSize(26);
     p5.noStroke();
     p5.fill(360,0,100);
-    p5.textFont(fontSyne);
+    p5.textFont(fontGaramond);
     p5.textAlign(p5.CENTER);
+    p5.textSize(32);
     p5.text(selectedText,50,775,700,300);
 
     p5.fill(360,0,100,0.4);
     p5.textAlign(p5.LEFT);
-    p5.textSize(28);
-    p5.text("Kernel Verses",50,1130,200,100);
+    p5.textSize(36);
+    p5.text("Kernel Verses",50,1110,200,100);
 
     p5.textAlign(p5.LEFT);
-    p5.textSize(28);
-    p5.text("Signature Economies",493,1130,400,100);
+    p5.textSize(36);
+    p5.text("Signature Economies",450,1110,400,100);
 
     if (n < selectedText.length && n<=400) {
       //animate the pattern
