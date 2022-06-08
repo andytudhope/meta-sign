@@ -210,11 +210,11 @@ function HighlightSketch(p5) {
     p5.fill(360,0,100,0.4);
     p5.textAlign(p5.LEFT);
     p5.textSize(36);
-    p5.text("Kernel Verses",50,1110,200,100);
+    p5.text("Kernel Verses",47,1110,200,100);
 
     p5.textAlign(p5.LEFT);
     p5.textSize(36);
-    p5.text("Signature Economies",450,1110,400,100);
+    p5.text("Signature Economies",459,1110,400,100);
 
     if (n < selectedText.length && n<=400) {
       //animate the pattern
